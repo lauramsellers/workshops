@@ -3,7 +3,7 @@
 
 ##Goals
 
-R is an open source programming language for statistical analysis. In this session, we’ll show you how to get started with R. We’ll introduce you to RStudio, a free integrated development environment (IDE) for R. You will learn how to load data into R and to plot simple graphs. We'll also demonstrate how to migrate your graphs to the web and make them interactive. You won’t leave as an R expert, but you’ll learn enough to get started on your data analysis journey.
+R is an [open source](https://en.wikipedia.org/wiki/Open_source) [programming language](https://en.wikipedia.org/wiki/Programming_language) for statistical analysis. In this session, we will show you how to get started with R. We will introduce you to RStudio, a [free integrated development environment](https://en.wikipedia.org/wiki/Integrated_development_environment) (IDE) for R. You will learn how to load data into R and to plot simple graphs. We will also demonstrate how to migrate your graphs to the web and make them interactive. You will not leave as an R expert, but you will learn enough to get started on your data analysis journey.
 
 ##Prerequisites
 
@@ -34,26 +34,28 @@ library(shiny)
 ```
 
 ##Why R?
-
 * R is open source, meaning that you can get started today without any upfront costs
 * R is widely-used both here at Vanderbilt and globally for data analysis
-* R has [a package (usually multiple packages!)](http://cran.r-project.org/) for nearly every kind of analysis
-* Using R fosters [reproducible research](http://christophergandrud.github.io/RepResR-RStudio/index.html)
+* R has a [package (usually multiple packages!)](https://cran.r-project.org/) for nearly every kind of analysis
+* Using R fosters [reproducible research](https://cran.r-project.org/)
 
-##R is a *Programming* Language
-
+##R is a *Programming* Language 
 * R is a programming language, not a 'point-and-click' statistical application 
+  * This means that you have a "recipe" for what you did to your data that you could hand to any other researcher for replication
+  * This also prevents the "What did I do here to get this result?!?" panic that sometimes happens with 'point-and-click' programs  
 * RStudio provides a integrated development environment (IDE) for R, making its appearance more user-friendly 
 * People use R in lots of different ways
-  * from evaluating simple statistical functions in a [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop)
-  * to developing interactive web applications with [Shiny](http://shiny.rstudio.com/)
-* The combination of R & RStudio makes it possible to become production by learning a few functions and then develop expertise over time as necessary
+  * Evaluate simple statistical functions in a read–eval–print loop [REPL](http://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop) so that you see the results immediately of the expressions you entered
+  * Developing interactive web applications with [Shiny](http://shiny.rstudio.com/)
+* The combination of R & RStudio makes it possible to become productive with statistical analysis by learning a few functions and then, as necessary, develop expertise over time
   
 ##R Exercises
 
 ###[Average Heights and Weights for American Women](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/women.html)
 
 This practice dataset of the average heights and weights for American women (ages 30-39) comes built in with the R programming language.
+
+* Before starting any data analysis, you need to load the packages that you are going to use. In RStudio, just click on the libaries in the Files|Plots|Packages|Help|Viewer box in RStudio.
 
 ```R
 # Load the ggplot2 graphing library
@@ -211,7 +213,7 @@ Here's a screenshow the resulting [Shiny application](https://andersoncliffb.shi
 
 ###[Mapping Stabucks Locations](https://opendata.socrata.com/Business/All-Starbucks-Locations-in-the-World-Point-Map/7sg8-44ed)
 
-R doesn't just produce plots. You can produce all kinds of outputs with the appropriate packages. In this example, we use [leaflet](https://rstudio.github.io/leaflet/), an open source Javascript mapping library, to produce a map of Starbuck's locations in Tennessee.
+R does not just produce plots. You can produce all kinds of outputs with the appropriate packages. In this example, we use [leaflet](https://rstudio.github.io/leaflet/), an open source Javascript mapping library, to produce a map of Starbucks locations in Tennessee.
 
 ```R
 # Plot Starbuck locations in Tennessee on a map
@@ -233,9 +235,9 @@ map
 
 ####Shiny Starbucks
 
-But why strict ourselves to Tennessee? Wouldn't it be better to allow users to select their own location from a dropdown control? Here's a Shiny version of the code above, which permits users to display Starbuck's locations in their own regions.
+But why strict ourselves to Tennessee? Why not allow users to select their own location from a dropdown control? Here is a Shiny version of the code above, which permits users to display Starbucks locations in their own regions.
 
-We divide the code between the files this time. Note how we've divided things up. We've placed most of the code outside the reactive context in ```global.R```, meaning that it will only be called on loading the application, not everytime a user updates the plot. ```global.R``` puts our code in scope of both ```ui.R``` and ```server.R```.
+We divide the code between the files this time. Note how we have divided things up. We have placed most of the code outside the reactive context in ```global.R```, meaning that it will only be called on loading the application, not everytime a user updates the plot. ```global.R``` puts our code in scope of both ```ui.R``` and ```server.R```.
 
 ```R
 # global.R
@@ -252,7 +254,7 @@ regions <- unique(as.vector(starbucks$Country.Subdivision))
 
 ```
 
-We then create a drop down list populated by the regions column of our data frame. Ideally, we'd clean up this list and make it more human readible.
+We then create a drop down list populated by the regions column of our data frame. Ideally, we would clean up this list and make it more human readible.
 
 ```R
 # ui.R
@@ -274,7 +276,7 @@ shinyUI(fluidPage(
 ))
 ```
 
-Like all Shiny applications, the ```server.R``` code below will update the map according to the region selected by the user. As you'll note, we're storing the CSV locally in a folder called ```data``` in order to avoid sending too many requests to the website of the data provider.
+Like all Shiny applications, the ```server.R``` code below will update the map according to the region selected by the user. As you will note, we are storing the [CSV](https://en.wikipedia.org/wiki/Comma-separated_values) locally in a folder called ```data``` in order to avoid sending too many requests to the website of the data provider.
 
 ```R
 # server.R
@@ -295,7 +297,7 @@ shinyServer(
 )
 ```
 
-Here's how your Shiny application winds up looking:
+Here is how your Shiny application winds up looking:
 
 ![Imgur](http://i.imgur.com/TqxSsi7.png)
 
@@ -391,7 +393,7 @@ arl$Wages <- wages
 Institutions <- as.vector(arl$Institution)
 ```
 
-Our ```ui.R``` and ```server.R``` scripts are very minimal. The ```ui.R``` provides a dropdown list of the institutions we'd can choose to highight.
+Our ```ui.R``` and ```server.R``` scripts are very minimal. The ```ui.R``` provides a dropdown list of the institutions we can choose to highight.
 
 ```R
 # ui.R
